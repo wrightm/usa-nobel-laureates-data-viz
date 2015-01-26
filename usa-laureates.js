@@ -24,11 +24,8 @@ var radius = d3.scale.sqrt()
     .domain([0, 100])
     .range([5, 30]);
 
-var svg = d3.select("body").append("div")
-    .attr("class", "container")
+var svg = d3.select("#usa-map-container").append("div")
     .attr("id", "usa-map")
-    .append("div")
-    .attr("class", "row")
     .append("svg")
     .attr("width", width)
     .attr("height", height)
