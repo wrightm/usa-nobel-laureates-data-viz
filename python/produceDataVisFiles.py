@@ -89,7 +89,15 @@ def make_laureates_outputfile(input_filename, output_filename, verbose, country_
 					lat, lon = get_geolocation_of_city(city)
 					if lat == "NaN" or lon == "NaN":
 						continue
-                                        n_laureates.append({"born": laureate["born"],"bornCountryCode": laureate["bornCountryCode"],"bornCity": city,"gender": laureate["gender"],"bornCityLatLon": [lat,lon], "prize" : laureate["prizes"][0]["category"], })
+                                        n_laureates.append({"born": laureate["born"],"bornCountryCode": laureate["bornCountryCode"],"bornCity": city,"gender": laureate["gender"],"bornCityLatLon": [lat,lon], "prize" : laureate["prizes"][0]["category"], "numberOfPrizes" : len(laureate["prizes"])})
+                        else:
+                                country = laureate["bornCountry"].split(',')[0]
+                                city = laureate["bornCity"].split(',')[0]
+                                lat, lon = get_geolocation_of_city(city)
+                                if lat == "NaN" or lon == "NaN":
+                                        continue
+                                n_laureates.append({"born": laureate["born"],"bornCountryCode": laureate["bornCountryCode"],"bornCity": city,"gender": laureate["gender"],"bornCityLatLon": [lat,lon], "prize" : laureate["prizes"][0]["category"], "numberOfPrizes" : len(laureate["prizes"])})
+                         
 
 	with open(output_filename, 'w') as outfile:
 		json.dump(n_laureates, outfile)
